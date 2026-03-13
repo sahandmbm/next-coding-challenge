@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useIntl } from "react-intl";
 import { useLocale } from "@/lib/i18n/LocaleContext";
 import { SUPPORTED_LOCALES, type Locale } from "@/lib/i18n/config";
@@ -91,6 +92,9 @@ export function Header() {
                     <span>{intl.formatMessage({ id: "cart.total" })}</span>
                     <span>{formatCurrency(total)}</span>
                   </div>
+                  <Link href="/checkout" className={styles.checkoutLink}>
+                    {intl.formatMessage({ id: "header.checkout" })}
+                  </Link>
                 </>
               )}
             </div>

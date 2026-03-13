@@ -9,14 +9,18 @@
   -webkit-backdrop-filter: blur(24px) saturate(1.8);
   border: 1px solid rgba(255, 255, 255, 0.75);
   border-radius: 999px;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07), 0 0 0 0.5px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.07),
+    0 0 0 0.5px rgba(0, 0, 0, 0.06);
 }
 
 @media (prefers-color-scheme: dark) {
   .header {
     background: rgba(22, 24, 30, 0.65);
     border-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4), 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+    box-shadow:
+      0 2px 20px rgba(0, 0, 0, 0.4),
+      0 0 0 0.5px rgba(255, 255, 255, 0.04);
   }
 }
 
@@ -67,7 +71,9 @@
   font-weight: 600;
   letter-spacing: 0.01em;
   padding: 0.3rem 1.75rem 0.3rem 0.7rem;
-  transition: background 150ms, border-color 150ms;
+  transition:
+    background 150ms,
+    border-color 150ms;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.55rem center;
@@ -127,7 +133,9 @@
   color: #374151;
   cursor: pointer;
   padding: 0.35rem 0.55rem;
-  transition: background 150ms, border-color 150ms;
+  transition:
+    background 150ms,
+    border-color 150ms;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -178,7 +186,7 @@
 .dropdown {
   display: none;
   position: absolute;
-  top: calc(100% + 10px);
+  top: 100%;
   right: 0;
   width: 270px;
   background: rgba(255, 255, 255, 0.75);
@@ -187,14 +195,19 @@
   border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: 16px;
   padding: 0.8rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 0 0.5px rgba(0, 0, 0, 0.05);
+  padding-top: 10px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 0 0 0.5px rgba(0, 0, 0, 0.05);
 }
 
 @media (prefers-color-scheme: dark) {
   .dropdown {
     background: rgba(22, 24, 30, 0.8);
     border-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      0 0 0 0.5px rgba(255, 255, 255, 0.04);
   }
 }
 
@@ -284,4 +297,22 @@
     color: #f0f2f5;
     border-top-color: rgba(255, 255, 255, 0.07);
   }
+}
+
+.checkoutLink {
+  display: block;
+  margin-top: 0.6rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 0.83rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: background 150ms;
+}
+
+.checkoutLink:hover {
+  background: #1d4ed8;
 }
