@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { IntlProvider } from 'react-intl';
 import { type Locale, getLocaleFromBrowserLang } from '@/lib/i18n/config';
 import messagesByLocale from '@/lib/i18n/messages';
+import { LocaleContext } from '@/lib/i18n/LocaleContext';
 
 export function LocaleProvider({
   children,
@@ -19,8 +20,10 @@ export function LocaleProvider({
   }, []);
 
   return (
-    <IntlProvider locale={locale} messages={messagesByLocale[locale]}>
-      {children}
-    </IntlProvider>
+    <LocaleContext.Provider value={{ locale, setLocale }}>
+      <IntlProvider locale={locale} messages={messagesByLocale[locale]}>
+        {children}
+      </IntlProvider>
+    </LocaleContext.Provider>
   );
 }

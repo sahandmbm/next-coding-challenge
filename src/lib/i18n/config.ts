@@ -1,5 +1,7 @@
 export type Locale = 'en-GB' | 'en-US';
 
+export const SUPPORTED_LOCALES: Locale[] = ['en-GB', 'en-US'];
+
 export const DEFAULT_LOCALE: Locale = 'en-GB';
 
 export const BROWSER_LOCALE_MAP: Record<string, Locale> = {

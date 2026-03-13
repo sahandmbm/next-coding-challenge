@@ -33,9 +33,8 @@ export default function Home() {
   };
 
   return (
-    <main className={styles.main}>
+    <div className={styles.main}>
       <div className={styles.description}>
-        <p>{intl.formatMessage({ id: 'store.title' })}</p>
         <div>
           <button className={styles.basket}>
             {intl.formatMessage({ id: 'basket.button' }, { count: itemCount })}
@@ -70,6 +69,6 @@ export default function Home() {
           </button>
         ))}
       </div>
-    </main>
+    </div>
   );
 }
