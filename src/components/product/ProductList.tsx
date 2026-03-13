@@ -1,8 +1,9 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocalisedCurrency } from '@/hooks/useLocalisedCurrency';
 import { useLocale } from '@/lib/i18n/LocaleContext';
 import { useProducts } from '@/components/utilities/ProductsContext';
+import { useCart } from '@/components/utilities/CartContext';
 import { ProductCard } from './ProductCard';
 import { ProductGrid } from './ProductGrid';
 import styles from './ProductList.module.css';
@@ -12,36 +13,29 @@ export function ProductList() {
   const { initialProducts, moreProducts, loadMore, isLoadingMore } = useProducts();
   const { formatCurrency } = useLocalisedCurrency();
   const { locale } = useLocale();
-  const [, setCartItems] = useState<{ id: number; qty: number }[]>([]);
+  const { addToCart, removeFromCart, getQty } = useCart();
   const sentinelRef = useRef<HTMLDivElement>(null);
-
-  const addToCart = (id: number) => {
-    setCartItems((prev) => {
-      const existing = prev.find((i) => i.id === id);
-      if (existing) {
-        return prev.map((i) => (i.id === id ? { ...i, qty: i.qty + 1 } : i));
-      }
-      return [...prev, { id, qty: 1 }];
-    });
-  };
 
   useEffect(() => {
     const sentinel = sentinelRef.current;
     if (!sentinel) return;
-
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) loadMore();
-      },
+      ([entry]) => { if (entry.isIntersecting) loadMore(); },
       { rootMargin: '200px' }
     );
-
     observer.observe(sentinel);
     return () => observer.disconnect();
   }, [loadMore]);
 
   const price = (p: ApiProduct) =>
     formatCurrency(locale === 'en-US' ? p.price.usd : p.price.gbp);
+
+  const remaining = (p: ApiProduct) => p.stock - getQty(p.id);
+
+  const stockLabel = (p: ApiProduct) => {
+    const r = remaining(p);
+    return r > 0 ? `${r} in stock` : 'Out of stock';
+  };
 
   return (
     <>
@@ -50,9 +44,12 @@ export function ProductList() {
           <ProductCard
             key={`init-${p.id}`}
             name={p.name.uk}
-            description={`${p.stock} in stock`}
+            description={stockLabel(p)}
             price={price(p)}
-            onAdd={() => addToCart(p.id)}
+            qty={getQty(p.id)}
+            outOfStock={remaining(p) <= 0}
+            onAdd={() => addToCart(p)}
+            onRemove={() => removeFromCart(p.id)}
           />
         ))}
         {moreProducts.map((p, i) => (
@@ -63,9 +60,12 @@ export function ProductList() {
           >
             <ProductCard
               name={p.name.uk}
-              description={`${p.stock} in stock`}
+              description={stockLabel(p)}
               price={price(p)}
-              onAdd={() => addToCart(p.id)}
+              qty={getQty(p.id)}
+              outOfStock={remaining(p) <= 0}
+              onAdd={() => addToCart(p)}
+              onRemove={() => removeFromCart(p.id)}
             />
           </div>
         ))}

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 import { LocaleProvider } from "@/components/utilities/LocaleProvider";
+import { CartProvider } from "@/components/utilities/CartContext";
 import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
 import messagesByLocale from "@/lib/i18n/messages";
 
@@ -29,7 +30,9 @@ export default function RootLayout({
   return (
     <html lang={locale}>
       <body className={inter.className}>
-        <LocaleProvider initialLocale={locale}>{children}</LocaleProvider>
+        <LocaleProvider initialLocale={locale}>
+          <CartProvider>{children}</CartProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

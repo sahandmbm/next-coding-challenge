@@ -5,50 +5,47 @@ interface ProductCardProps {
   name: string;
   description: string;
   price: string;
+  qty: number;
+  outOfStock: boolean;
   onAdd: () => void;
+  onRemove: () => void;
 }
 
-function CartPlusIcon() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <circle cx="9" cy="21" r="1" />
-      <circle cx="20" cy="21" r="1" />
-      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-      <line x1="12" y1="10" x2="12" y2="16" />
-      <line x1="9" y1="13" x2="15" y2="13" />
-    </svg>
-  );
-}
+export function ProductCard({ name, description, price, qty, outOfStock, onAdd, onRemove }: ProductCardProps) {
+  const inCart = qty > 0;
 
-export function ProductCard({ name, description, price, onAdd }: ProductCardProps) {
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${inCart ? styles.inCart : ""}`}>
       <div className={styles.imageArea}>
+        {inCart && <span className={styles.qtyBadge}>×{qty}</span>}
         <div className={styles.overlay}>
           <h2 className={styles.name}>{name}</h2>
           <p className={styles.description}>{description}</p>
         </div>
       </div>
+
       <div className={styles.footer}>
         <span className={styles.price}>{price}</span>
-        <button
-          className={styles.addButton}
-          onClick={onAdd}
-          aria-label={`Add ${name} to cart`}
-        >
-          <CartPlusIcon />
-          Add
-        </button>
+        <div className={styles.actions}>
+          {inCart && (
+            <button
+              className={styles.stepButton}
+              onClick={onRemove}
+              aria-label={`Remove one ${name} from cart`}
+            >
+              −
+            </button>
+          )}
+          {inCart && <span className={styles.qtyCount}>{qty}</span>}
+          <button
+            className={styles.stepButton}
+            onClick={onAdd}
+            disabled={outOfStock}
+            aria-label={outOfStock ? `${name} is out of stock` : `Add ${name} to cart`}
+          >
+            +
+          </button>
+        </div>
       </div>
     </div>
   );
