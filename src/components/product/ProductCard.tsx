@@ -1,4 +1,5 @@
 "use client";
+import { useIntl } from "react-intl";
 import styles from "./ProductCard.module.css";
 
 interface ProductCardProps {
@@ -12,6 +13,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ name, description, price, qty, outOfStock, onAdd, onRemove }: ProductCardProps) {
+  const intl = useIntl();
   const inCart = qty > 0;
 
   return (
@@ -31,7 +33,7 @@ export function ProductCard({ name, description, price, qty, outOfStock, onAdd, 
             <button
               className={styles.stepButton}
               onClick={onRemove}
-              aria-label={`Remove one ${name} from cart`}
+              aria-label={intl.formatMessage({ id: "item.remove.aria" }, { name })}
             >
               −
             </button>
@@ -41,7 +43,11 @@ export function ProductCard({ name, description, price, qty, outOfStock, onAdd, 
             className={styles.stepButton}
             onClick={onAdd}
             disabled={outOfStock}
-            aria-label={outOfStock ? `${name} is out of stock` : `Add ${name} to cart`}
+            aria-label={
+              outOfStock
+                ? intl.formatMessage({ id: "item.outOfStock.aria" }, { name })
+                : intl.formatMessage({ id: "item.add.aria" }, { name })
+            }
           >
             +
           </button>

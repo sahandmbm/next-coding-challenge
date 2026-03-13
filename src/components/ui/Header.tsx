@@ -70,7 +70,7 @@ export function Header() {
               {items.length === 0 ? (
                 <div className={styles.emptyState}>
                   <EmptyCartIcon />
-                  <span>Your cart is empty</span>
+                  <span>{intl.formatMessage({ id: "cart.empty" })}</span>
                 </div>
               ) : (
                 <>
@@ -88,7 +88,7 @@ export function Header() {
                     })}
                   </ul>
                   <div className={styles.dropdownFooter}>
-                    <span>Total</span>
+                    <span>{intl.formatMessage({ id: "cart.total" })}</span>
                     <span>{formatCurrency(total)}</span>
                   </div>
                 </>

@@ -10,6 +10,13 @@ const messages: Record<string, string> = {
   "banner.subtitle":
     "Explore our latest collection of handpicked products, crafted for everyday life.",
   "banner.cta": "Shop now",
+  "stock.available": "{count} in stock",
+  "stock.outOfStock": "Out of stock",
+  "cart.empty": "Your cart is empty",
+  "cart.total": "Total",
+  "item.add.aria": "Add {name} to cart",
+  "item.remove.aria": "Remove one {name} from cart",
+  "item.outOfStock.aria": "{name} is out of stock",
 };
 
 export default messages;

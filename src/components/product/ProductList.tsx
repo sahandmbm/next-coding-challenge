@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import { useIntl } from 'react-intl';
 import { useLocalisedCurrency } from '@/hooks/useLocalisedCurrency';
 import { useLocale } from '@/lib/i18n/LocaleContext';
 import { useProducts } from '@/components/utilities/ProductsContext';
@@ -14,6 +15,7 @@ export function ProductList() {
   const { formatCurrency } = useLocalisedCurrency();
   const { locale } = useLocale();
   const { addToCart, removeFromCart, getQty } = useCart();
+  const intl = useIntl();
   const sentinelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -34,7 +36,9 @@ export function ProductList() {
 
   const stockLabel = (p: ApiProduct) => {
     const r = remaining(p);
-    return r > 0 ? `${r} in stock` : 'Out of stock';
+    return r > 0
+      ? intl.formatMessage({ id: 'stock.available' }, { count: r })
+      : intl.formatMessage({ id: 'stock.outOfStock' });
   };
 
   return (
