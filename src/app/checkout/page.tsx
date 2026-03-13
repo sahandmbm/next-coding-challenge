@@ -1,51 +1,13 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useIntl } from "react-intl";
 import { useLocale } from "@/lib/i18n/LocaleContext";
 import { useLocalisedCurrency } from "@/hooks/useLocalisedCurrency";
 import { useCart } from "@/utilities/CartContext";
 import { Modal } from "@/components/modal/Modal";
+import { BackIcon, ConfirmedIcon } from "@/utilities/IconProvider";
 import styles from "./checkout.module.css";
-
-function BackIcon() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <line x1="19" y1="12" x2="5" y2="12" />
-      <polyline points="12 19 5 12 12 5" />
-    </svg>
-  );
-}
-
-function ConfirmedIcon() {
-  return (
-    <svg
-      width="52"
-      height="52"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      className={styles.confirmedIcon}
-    >
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="9 12 11 14 15 10" />
-    </svg>
-  );
-}
 
 export default function CheckoutPage() {
   const intl = useIntl();
@@ -79,7 +41,7 @@ export default function CheckoutPage() {
             </Link>
           </div>
         ) : (
-          <>
+          <React.Fragment>
             <ul className={styles.itemList}>
               {items.map(({ product, qty }) => {
                 const price =
@@ -120,13 +82,13 @@ export default function CheckoutPage() {
             >
               {intl.formatMessage({ id: "checkout.completeButton" })}
             </button>
-          </>
+          </React.Fragment>
         )}
       </div>
 
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
         <div className={styles.modalContent}>
-          <ConfirmedIcon />
+          <ConfirmedIcon styles={styles} />
           <h2 className={styles.modalTitle}>
             {intl.formatMessage({ id: "modal.orderConfirmed" })}
           </h2>

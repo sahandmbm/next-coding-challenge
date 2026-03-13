@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useIntl } from "react-intl";
 import { useLocalisedCurrency } from "@/hooks/useLocalisedCurrency";
 import { useLocale } from "@/lib/i18n/LocaleContext";
@@ -45,7 +45,7 @@ export function ProductList() {
   };
 
   return (
-    <>
+    <React.Fragment>
       <ProductGrid>
         {initialProducts.map((p) => (
           <ProductCard
@@ -81,6 +81,6 @@ export function ProductList() {
       <div ref={sentinelRef} className={styles.sentinel} aria-hidden="true">
         {isLoadingMore && <div className={styles.spinner} />}
       </div>
-    </>
+    </React.Fragment>
   );
 }

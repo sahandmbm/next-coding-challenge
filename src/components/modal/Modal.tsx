@@ -11,7 +11,9 @@ interface ModalProps {
 export function Modal({ isOpen, onClose, children }: ModalProps) {
   useEffect(() => {
     if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [isOpen, onClose]);
@@ -19,7 +21,12 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className={styles.backdrop} onClick={onClose} role="dialog" aria-modal="true">
+    <div
+      className={styles.backdrop}
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+    >
       <div className={styles.panel} onClick={(e) => e.stopPropagation()}>
         {children}
       </div>

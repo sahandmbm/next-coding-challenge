@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { TestWrapper } from "@/utilities/test-utils";
 import CheckoutPage from "@/app/checkout/page";
@@ -18,10 +19,10 @@ const wrapper = ({ children }: { children: React.ReactNode }) => (
 function CheckoutWithHelper() {
   const { addToCart } = useCart();
   return (
-    <>
+    <React.Fragment>
       <button onClick={() => addToCart(mockProduct)}>populate cart</button>
       <CheckoutPage />
-    </>
+    </React.Fragment>
   );
 }
 

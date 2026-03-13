@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import Link from "next/link";
 import { useIntl } from "react-intl";
 import { useLocale } from "@/lib/i18n/LocaleContext";
@@ -93,7 +94,7 @@ export function Header() {
                   <span>{intl.formatMessage({ id: "cart.empty" })}</span>
                 </div>
               ) : (
-                <>
+                <React.Fragment>
                   <ul className={styles.dropdownList}>
                     {items.map(({ product, qty }) => {
                       const price =
@@ -119,7 +120,7 @@ export function Header() {
                   <Link href="/checkout" className={styles.checkoutLink}>
                     {intl.formatMessage({ id: "header.checkout" })}
                   </Link>
-                </>
+                </React.Fragment>
               )}
             </div>
           </div>

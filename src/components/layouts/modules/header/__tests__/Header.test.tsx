@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { TestWrapper } from "@/utilities/test-utils";
 import { Header } from "@/components/layouts/modules/header/Header";
@@ -18,10 +19,10 @@ const wrapper = ({ children }: { children: React.ReactNode }) => (
 function HeaderWithCartHelper() {
   const { addToCart } = useCart();
   return (
-    <>
+    <React.Fragment>
       <button onClick={() => addToCart(mockProduct)}>add to cart</button>
       <Header />
-    </>
+    </React.Fragment>
   );
 }
 
