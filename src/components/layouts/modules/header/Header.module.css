@@ -1,0 +1,318 @@
+.header {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 100;
+  width: 480px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 999px;
+  box-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.07),
+    0 0 0 0.5px rgba(0, 0, 0, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  .header {
+    background: rgba(22, 24, 30, 0.65);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 2px 20px rgba(0, 0, 0, 0.4),
+      0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  }
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  height: 50px;
+  gap: 0.75rem;
+}
+
+.title {
+  font-size: 0.9rem;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .title {
+    color: #f0f2f5;
+  }
+}
+
+/* Controls group */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Locale select */
+.localeSelect {
+  appearance: none;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 999px;
+  color: #374151;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.3rem 1.75rem 0.3rem 0.7rem;
+  transition:
+    background 150ms,
+    border-color 150ms;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.55rem center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .localeSelect {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #d1d5db;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='%23aaa' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  }
+}
+
+.localeSelect:hover {
+  background-color: rgba(0, 0, 0, 0.09);
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+@media (prefers-color-scheme: dark) {
+  .localeSelect:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+}
+
+.localeSelect:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.localeSelect option {
+  background: #ffffff;
+  color: #111827;
+}
+
+@media (prefers-color-scheme: dark) {
+  .localeSelect option {
+    background: #1a1d23;
+    color: #f0f2f5;
+  }
+}
+
+/* Basket */
+.basketWrapper {
+  position: relative;
+}
+
+.basketButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 999px;
+  color: #374151;
+  cursor: pointer;
+  padding: 0.35rem 0.55rem;
+  transition:
+    background 150ms,
+    border-color 150ms;
+}
+
+@media (prefers-color-scheme: dark) {
+  .basketButton {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #d1d5db;
+  }
+}
+
+.basketButton:hover {
+  background: rgba(0, 0, 0, 0.09);
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+@media (prefers-color-scheme: dark) {
+  .basketButton:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+}
+
+.basketBadge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  min-width: 15px;
+  height: 15px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+}
+
+@media (prefers-color-scheme: dark) {
+  .basketBadge {
+    border-color: rgba(22, 24, 30, 0.8);
+  }
+}
+
+/* Dropdown */
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 270px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  padding: 0.8rem;
+  padding-top: 10px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 0 0 0.5px rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  .dropdown {
+    background: rgba(22, 24, 30, 0.8);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  }
+}
+
+.basketWrapper:hover .dropdown {
+  display: block;
+}
+
+.dropdownTitle {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #9ca3af;
+  margin-bottom: 0.5rem;
+  padding: 0 0.25rem;
+}
+
+.dropdownList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.dropdownItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+@media (prefers-color-scheme: dark) {
+  .dropdownItem {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.itemName {
+  font-size: 0.83rem;
+  font-weight: 500;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (prefers-color-scheme: dark) {
+  .itemName {
+    color: #e5e7eb;
+  }
+}
+
+.itemMeta {
+  font-size: 0.76rem;
+  color: #9ca3af;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem 0.5rem;
+  color: #9ca3af;
+  font-size: 0.82rem;
+}
+
+.dropdownFooter {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.5rem 0.1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #111827;
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  margin-top: 0.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .dropdownFooter {
+    color: #f0f2f5;
+    border-top-color: rgba(255, 255, 255, 0.07);
+  }
+}
+
+.checkoutLink {
+  display: block;
+  margin-top: 0.6rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 0.83rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: background 150ms;
+}
+
+.checkoutLink:hover {
+  background: #1d4ed8;
+}

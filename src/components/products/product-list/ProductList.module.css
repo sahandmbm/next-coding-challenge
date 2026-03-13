@@ -1,0 +1,55 @@
+.sentinel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(37, 99, 235, 0.15);
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .spinner {
+    border-color: rgba(147, 197, 253, 0.15);
+    border-top-color: #93c5fd;
+  }
+}
+
+.newCard {
+  display: contents;
+  animation: fadeSlideUp 400ms ease both;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .spinner {
+    animation: none;
+    opacity: 0.4;
+  }
+  .newCard {
+    animation: none;
+  }
+}

@@ -10,4 +10,12 @@ const customJestConfig = {
     testEnvironment: 'jest-environment-jsdom'
 };
 
-module.exports = createJestConfig(customJestConfig);
+// nextJest sets transformIgnorePatterns which blocks ESM packages like
+// react-intl. We override it after the config is generated.
+module.exports = async () => {
+    const config = await createJestConfig(customJestConfig)();
+    config.transformIgnorePatterns = [
+        '/node_modules/(?!(react-intl|@formatjs|intl-messageformat|@react-intl)/).+'
+    ];
+    return config;
+};

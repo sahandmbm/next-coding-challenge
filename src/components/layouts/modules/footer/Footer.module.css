@@ -1,0 +1,186 @@
+/* ── Light mode (default) ── */
+.footer {
+  width: 100%;
+  margin-top: 5rem;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  color: #1e293b;
+  position: relative;
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  top: -160px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 4rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 260px;
+}
+
+.brandName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+
+.tagline {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: #64748b;
+  margin: 0;
+}
+
+.links {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.linkGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.linkGroupTitle {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 0.2rem;
+}
+
+.link {
+  font-size: 0.875rem;
+  color: #475569;
+  cursor: pointer;
+  transition: color 150ms;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #2563eb;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.copy {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.badges {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid #bfdbfe;
+  color: #2563eb;
+  background: #eff6ff;
+}
+
+/* ── Dark mode ── */
+@media (prefers-color-scheme: dark) {
+  .footer {
+    background: #0b0e14;
+    border-top-color: rgba(255, 255, 255, 0.06);
+    color: #f1f5f9;
+  }
+
+  .glow {
+    background: radial-gradient(ellipse, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+  }
+
+  .brandName {
+    color: #ffffff;
+  }
+
+  .tagline {
+    color: #94a3b8;
+  }
+
+  .linkGroupTitle {
+    color: #475569;
+  }
+
+  .link {
+    color: #94a3b8;
+  }
+
+  .link:hover {
+    color: #a5b4fc;
+  }
+
+  .bottom {
+    border-top-color: rgba(255, 255, 255, 0.07);
+  }
+
+  .copy {
+    color: #475569;
+  }
+
+  .badge {
+    border-color: rgba(99, 102, 241, 0.35);
+    color: #818cf8;
+    background: rgba(99, 102, 241, 0.08);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .top {
+    flex-direction: column;
+  }
+
+  .brand {
+    max-width: 100%;
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
