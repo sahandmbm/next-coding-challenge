@@ -10,7 +10,8 @@ export async function fetchInitialProducts(): Promise<ApiProduct[]> {
 }
 
 export async function fetchMoreProducts(): Promise<ApiProduct[]> {
-  const res = await fetch(`${API_BASE}/more-products`);
+  const res = await fetch("/api/more-products");
+  console.log({ res });
   if (!res.ok) return [];
   const data = await res.json();
   return data.products ?? [];

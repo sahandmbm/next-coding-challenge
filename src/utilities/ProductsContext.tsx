@@ -33,7 +33,7 @@ export function ProductsProvider({
   initialProducts: ApiProduct[];
   children: ReactNode;
 }) {
-  const [moreProducts, setMoreProducts] = useState<ApiProduct[]>([]);
+  const [moreProductsState, setMoreProducts] = useState<ApiProduct[]>([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
@@ -50,7 +50,8 @@ export function ProductsProvider({
     fetchMoreProducts()
       .then((more) => {
         if (more.length > 0) {
-          setMoreProducts(more);
+          setMoreProducts((prev) => [...prev, ...more]);
+          console.log({ more });
         }
       })
       .catch(() => {})
@@ -65,7 +66,7 @@ export function ProductsProvider({
     <ProductsContext.Provider
       value={{
         initialProducts,
-        moreProducts,
+        moreProducts: moreProductsState,
         loadMore,
         isLoadingMore,
         hasMore,
