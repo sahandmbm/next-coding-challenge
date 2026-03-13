@@ -1,56 +1,51 @@
 import { render, screen } from "@testing-library/react";
-import { IntlProvider } from "react-intl";
+import { TestWrapper } from "@/utilities/test-utils";
 import Home from "@/app/(home)/page";
 import enGB from "@/lib/i18n/messages/en-GB";
 
+// Home is an async server component — mock the data-fetching layer so it
+// can be awaited and rendered in jsdom without network calls.
+jest.mock("@/lib/api/products", () => ({
+  fetchInitialProducts: jest.fn().mockResolvedValue([
+    {
+      id: 1,
+      name: { us: "Widget A", uk: "Widget A" },
+      price: { usd: 10, gbp: 8 },
+      stock: 5,
+    },
+    {
+      id: 2,
+      name: { us: "Widget B", uk: "Widget B" },
+      price: { usd: 20, gbp: 16 },
+      stock: 0,
+    },
+  ]),
+  fetchMoreProducts: jest.fn().mockResolvedValue([]),
+}));
+
 const wrapper = ({ children }: { children: React.ReactNode }) => (
-  <IntlProvider locale="en-GB" messages={enGB}>
-    {children}
-  </IntlProvider>
+  <TestWrapper>{children}</TestWrapper>
 );
 
-describe("Home", () => {
-  it("renders an empty basket", () => {
-    render(<Home />, { wrapper });
-
-    const basketButton = screen.getByRole("button", {
-      name: /Basket:/i,
-    });
-
-    expect(basketButton).toHaveTextContent("Basket: 0 items");
+describe("Home page", () => {
+  it("renders the image banner", async () => {
+    const jsx = await Home();
+    render(jsx, { wrapper });
+    expect(screen.getByText(enGB["banner.eyebrow"])).toBeInTheDocument();
+    expect(screen.getByText(enGB["banner.title"])).toBeInTheDocument();
   });
 
-  it("renders a basket with 1 item", async () => {
-    render(<Home />, { wrapper });
-
-    const buttons = screen.getAllByRole("button", {
-      name: /Add to basket/i,
-    });
-
-    await buttons[0].click();
-
-    const basketButton = screen.getByRole("button", {
-      name: /Basket:/i,
-    });
-
-    expect(basketButton).toHaveTextContent(/Basket: 1 item$/);
+  it("renders the initial product list", async () => {
+    const jsx = await Home();
+    render(jsx, { wrapper });
+    expect(screen.getByText("Widget A")).toBeInTheDocument();
+    expect(screen.getByText("Widget B")).toBeInTheDocument();
   });
 
-  it("renders a basket with 1 of item 1 and 2 of item 2", async () => {
-    render(<Home />, { wrapper });
-
-    const buttons = screen.getAllByRole("button", {
-      name: /Add to basket/i,
-    });
-
-    await buttons[0].click();
-    await buttons[1].click();
-    await buttons[1].click();
-
-    const basketButton = screen.getByRole("button", {
-      name: /Basket:/i,
-    });
-
-    expect(basketButton).toHaveTextContent(/Basket: 2 items$/);
+  it("shows stock information for products", async () => {
+    const jsx = await Home();
+    render(jsx, { wrapper });
+    expect(screen.getByText("5 in stock")).toBeInTheDocument();
+    expect(screen.getByText("Out of stock")).toBeInTheDocument();
   });
 });
