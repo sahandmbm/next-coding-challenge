@@ -61,3 +61,125 @@
   background: rgb(var(--background-end-rgb));
   color: rgb(var(--foreground-rgb));
 }
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Basket */
+.basketWrapper {
+  position: relative;
+}
+
+.basketButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--card-rgb), 0.15);
+  border: 1px solid rgba(var(--card-border-rgb), 0.3);
+  border-radius: 8px;
+  color: rgb(var(--foreground-rgb));
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  transition:
+    background 150ms,
+    border-color 150ms;
+}
+
+.basketButton:hover {
+  background: rgba(var(--card-rgb), 0.25);
+  border-color: rgba(var(--card-border-rgb), 0.5);
+}
+
+.basketBadge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: rgb(var(--foreground-rgb));
+  color: rgb(var(--background-end-rgb));
+  font-size: 0.65rem;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+}
+
+/* Dropdown */
+.dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 260px;
+  background: rgba(var(--background-start-rgb), 0.92);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(var(--callout-border-rgb), 0.25);
+  border-radius: 14px;
+  padding: 0.75rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.basketWrapper:hover .dropdown {
+  display: block;
+}
+
+.dropdownTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+  padding: 0 0.25rem;
+}
+
+.dropdownList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.dropdownItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.45rem 0.5rem;
+  border-radius: 8px;
+  background: rgba(var(--card-rgb), 0.1);
+}
+
+.itemName {
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.itemMeta {
+  font-size: 0.78rem;
+  opacity: 0.55;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.dropdownFooter {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.5rem 0.15rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-top: 1px solid rgba(var(--callout-border-rgb), 0.2);
+  margin-top: 0.25rem;
+}

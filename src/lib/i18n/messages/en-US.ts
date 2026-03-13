@@ -4,6 +4,7 @@ const messages: Record<string, string> = {
   "store.title": "Michael's Amazing Web Store",
   "basket.button": "Cart: {count} {count, plural, one {item} other {items}}",
   "item.count": "{name} count: {count}",
+  "store.cart": "Cart",
 };
 
 export default messages;
