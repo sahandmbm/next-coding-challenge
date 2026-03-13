@@ -21,7 +21,8 @@ const messages: Record<string, string> = {
   "checkout.title": "Checkout",
   "checkout.empty": "Your cart is empty",
   "checkout.continueShopping": "Continue shopping",
-  "checkout.totalItems": "{count} {count, plural, one {item} other {items}} total",
+  "checkout.totalItems":
+    "{count} {count, plural, one {item} other {items}} total",
   "checkout.orderTotal": "Order total",
   "checkout.completeButton": "Complete checkout",
   "modal.orderConfirmed": "Order confirmed!",
@@ -42,7 +43,8 @@ const messages: Record<string, string> = {
   "footer.company.about": "About",
   "footer.company.blog": "Blog",
   "footer.company.contact": "Contact",
-  "footer.copy": "© {year} Michael's Amazing Web Store. All rights reserved. Not really though, this is a demo :D",
+  "footer.copy":
+    "© {year} Michael's Amazing Web Store. All rights reserved. Not really though, this is a demo :D",
 };
 
 export default messages;

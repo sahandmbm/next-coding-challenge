@@ -1,8 +1,8 @@
-import { fetchInitialProducts } from '@/lib/products';
-import { ProductsProvider } from '@/components/utilities/ProductsContext';
-import { ProductList } from '@/components/product/ProductList';
-import { ImageBanner } from '@/components/ui/ImageBanner';
-import styles from './page.module.css';
+import { fetchInitialProducts } from "@/lib/api/products";
+import { ProductsProvider } from "@/utilities/ProductsContext";
+import { ProductList } from "@/components/products/product-list/ProductList";
+import { ImageBanner } from "@/components/image-banner/ImageBanner";
+import styles from "./page.module.css";
 
 export default async function Home() {
   const initialProducts = await fetchInitialProducts();

@@ -1,7 +1,14 @@
-'use client';
-import { createContext, useCallback, useContext, useRef, useState, type ReactNode } from 'react';
-import type { ApiProduct } from '@/types/product';
-import { fetchMoreProducts } from '@/lib/products';
+"use client";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
+import type { ApiProduct } from "@/types/product";
+import { fetchMoreProducts } from "@/lib/api/products";
 
 interface ProductsContextValue {
   initialProducts: ApiProduct[];
@@ -55,7 +62,15 @@ export function ProductsProvider({
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ initialProducts, moreProducts, loadMore, isLoadingMore, hasMore }}>
+    <ProductsContext.Provider
+      value={{
+        initialProducts,
+        moreProducts,
+        loadMore,
+        isLoadingMore,
+        hasMore,
+      }}
+    >
       {children}
     </ProductsContext.Provider>
   );

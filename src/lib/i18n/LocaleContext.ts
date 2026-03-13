@@ -1,5 +1,5 @@
-import { createContext, useContext } from 'react';
-import { type Locale, DEFAULT_LOCALE } from './config';
+import { createContext, useContext } from "react";
+import { type Locale, DEFAULT_LOCALE } from "./config";
 
 interface LocaleContextValue {
   locale: Locale;

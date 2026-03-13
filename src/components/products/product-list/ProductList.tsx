@@ -1,17 +1,18 @@
-'use client';
-import { useEffect, useRef } from 'react';
-import { useIntl } from 'react-intl';
-import { useLocalisedCurrency } from '@/hooks/useLocalisedCurrency';
-import { useLocale } from '@/lib/i18n/LocaleContext';
-import { useProducts } from '@/components/utilities/ProductsContext';
-import { useCart } from '@/components/utilities/CartContext';
-import { ProductCard } from './ProductCard';
-import { ProductGrid } from './ProductGrid';
-import styles from './ProductList.module.css';
-import type { ApiProduct } from '@/types/product';
+"use client";
+import { useEffect, useRef } from "react";
+import { useIntl } from "react-intl";
+import { useLocalisedCurrency } from "@/hooks/useLocalisedCurrency";
+import { useLocale } from "@/lib/i18n/LocaleContext";
+import { useProducts } from "@/utilities/ProductsContext";
+import { useCart } from "@/utilities/CartContext";
+import { ProductCard } from "../product-card/ProductCard";
+import { ProductGrid } from "../product-grid/ProductGrid";
+import styles from "./ProductList.module.css";
+import type { ApiProduct } from "@/types/product";
 
 export function ProductList() {
-  const { initialProducts, moreProducts, loadMore, isLoadingMore } = useProducts();
+  const { initialProducts, moreProducts, loadMore, isLoadingMore } =
+    useProducts();
   const { formatCurrency } = useLocalisedCurrency();
   const { locale } = useLocale();
   const { addToCart, removeFromCart, getQty } = useCart();
@@ -22,23 +23,25 @@ export function ProductList() {
     const sentinel = sentinelRef.current;
     if (!sentinel) return;
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) loadMore(); },
-      { rootMargin: '200px' }
+      ([entry]) => {
+        if (entry.isIntersecting) loadMore();
+      },
+      { rootMargin: "200px" },
     );
     observer.observe(sentinel);
     return () => observer.disconnect();
   }, [loadMore]);
 
   const price = (p: ApiProduct) =>
-    formatCurrency(locale === 'en-US' ? p.price.usd : p.price.gbp);
+    formatCurrency(locale === "en-US" ? p.price.usd : p.price.gbp);
 
   const remaining = (p: ApiProduct) => p.stock - getQty(p.id);
 
   const stockLabel = (p: ApiProduct) => {
     const r = remaining(p);
     return r > 0
-      ? intl.formatMessage({ id: 'stock.available' }, { count: r })
-      : intl.formatMessage({ id: 'stock.outOfStock' });
+      ? intl.formatMessage({ id: "stock.available" }, { count: r })
+      : intl.formatMessage({ id: "stock.outOfStock" });
   };
 
   return (

@@ -2,8 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
-import { LocaleProvider } from "@/components/utilities/LocaleProvider";
-import { CartProvider } from "@/components/utilities/CartContext";
+import { LocaleProvider } from "@/utilities/LocaleProvider";
+import { CartProvider } from "@/utilities/CartContext";
 import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/config";
 import messagesByLocale from "@/lib/i18n/messages";
 

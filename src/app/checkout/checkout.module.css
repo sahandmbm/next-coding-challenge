@@ -31,11 +31,17 @@
   width: fit-content;
 }
 
-.backLink:hover { color: #2563eb; }
+.backLink:hover {
+  color: #2563eb;
+}
 
 @media (prefers-color-scheme: dark) {
-  .backLink { color: #8b92a5; }
-  .backLink:hover { color: #60a5fa; }
+  .backLink {
+    color: #8b92a5;
+  }
+  .backLink:hover {
+    color: #60a5fa;
+  }
 }
 
 /* Title */
@@ -47,7 +53,9 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .title { color: #f1f5f9; }
+  .title {
+    color: #f1f5f9;
+  }
 }
 
 /* Empty state */
@@ -100,7 +108,9 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .item:hover { background: rgba(255, 255, 255, 0.04); }
+  .item:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
 }
 
 .itemImage {
@@ -135,7 +145,9 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .itemName { color: #f1f5f9; }
+  .itemName {
+    color: #f1f5f9;
+  }
 }
 
 .itemQty {
@@ -152,7 +164,9 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .itemPrice { color: #93c5fd; }
+  .itemPrice {
+    color: #93c5fd;
+  }
 }
 
 /* Summary */
@@ -181,7 +195,9 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .summaryRow { color: #8b92a5; }
+  .summaryRow {
+    color: #8b92a5;
+  }
 }
 
 .summaryTotal {
@@ -211,11 +227,18 @@
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background 150ms, transform 120ms;
+  transition:
+    background 150ms,
+    transform 120ms;
 }
 
-.checkoutButton:hover { background: #1d4ed8; transform: translateY(-1px); }
-.checkoutButton:active { transform: translateY(0); }
+.checkoutButton:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+.checkoutButton:active {
+  transform: translateY(0);
+}
 
 /* Modal content */
 .modalContent {
@@ -231,7 +254,9 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .confirmedIcon { color: #60a5fa; }
+  .confirmedIcon {
+    color: #60a5fa;
+  }
 }
 
 .modalTitle {
@@ -243,7 +268,9 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .modalTitle { color: #f1f5f9; }
+  .modalTitle {
+    color: #f1f5f9;
+  }
 }
 
 .modalMessage {
@@ -254,7 +281,9 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .modalMessage { color: #8b92a5; }
+  .modalMessage {
+    color: #8b92a5;
+  }
 }
 
 .modalClose {
@@ -270,16 +299,22 @@
   transition: background 150ms;
 }
 
-.modalClose:hover { background: #f1f5f9; }
+.modalClose:hover {
+  background: #f1f5f9;
+}
 
 @media (prefers-color-scheme: dark) {
   .modalClose {
     border-color: #2e3139;
     color: #d1d5db;
   }
-  .modalClose:hover { background: rgba(255,255,255,0.06); }
+  .modalClose:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
 }
 
 @media (prefers-reduced-motion) {
-  .checkoutButton { transition: none; }
+  .checkoutButton {
+    transition: none;
+  }
 }
