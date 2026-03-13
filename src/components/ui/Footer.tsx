@@ -1,6 +1,11 @@
+"use client";
+import { useIntl } from "react-intl";
 import styles from "./Footer.module.css";
 
 export function Footer() {
+  const intl = useIntl();
+  const year = new Date().getFullYear();
+
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
@@ -8,37 +13,45 @@ export function Footer() {
 
         <div className={styles.top}>
           <div className={styles.brand}>
-            <span className={styles.brandName}>Michael&apos;s Store</span>
+            <span className={styles.brandName}>
+              {intl.formatMessage({ id: "footer.brandName" })}
+            </span>
             <p className={styles.tagline}>
-              Sahand Shahriari is proud of what he creates&nbsp;:D
+              {intl.formatMessage({ id: "footer.tagline" })}
             </p>
           </div>
 
-          <nav className={styles.links} aria-label="Footer navigation">
+          <nav className={styles.links} aria-label={intl.formatMessage({ id: "footer.nav.aria" })}>
             <div className={styles.linkGroup}>
-              <span className={styles.linkGroupTitle}>Shop</span>
-              <a className={styles.link}>All products</a>
-              <a className={styles.link}>New arrivals</a>
-              <a className={styles.link}>Sale</a>
+              <span className={styles.linkGroupTitle}>
+                {intl.formatMessage({ id: "footer.shop" })}
+              </span>
+              <a className={styles.link}>{intl.formatMessage({ id: "footer.shop.allProducts" })}</a>
+              <a className={styles.link}>{intl.formatMessage({ id: "footer.shop.newArrivals" })}</a>
+              <a className={styles.link}>{intl.formatMessage({ id: "footer.shop.sale" })}</a>
             </div>
             <div className={styles.linkGroup}>
-              <span className={styles.linkGroupTitle}>Support</span>
-              <a className={styles.link}>FAQ</a>
-              <a className={styles.link}>Shipping</a>
-              <a className={styles.link}>Returns</a>
+              <span className={styles.linkGroupTitle}>
+                {intl.formatMessage({ id: "footer.support" })}
+              </span>
+              <a className={styles.link}>{intl.formatMessage({ id: "footer.support.faq" })}</a>
+              <a className={styles.link}>{intl.formatMessage({ id: "footer.support.shipping" })}</a>
+              <a className={styles.link}>{intl.formatMessage({ id: "footer.support.returns" })}</a>
             </div>
             <div className={styles.linkGroup}>
-              <span className={styles.linkGroupTitle}>Company</span>
-              <a className={styles.link}>About</a>
-              <a className={styles.link}>Blog</a>
-              <a className={styles.link}>Contact</a>
+              <span className={styles.linkGroupTitle}>
+                {intl.formatMessage({ id: "footer.company" })}
+              </span>
+              <a className={styles.link}>{intl.formatMessage({ id: "footer.company.about" })}</a>
+              <a className={styles.link}>{intl.formatMessage({ id: "footer.company.blog" })}</a>
+              <a className={styles.link}>{intl.formatMessage({ id: "footer.company.contact" })}</a>
             </div>
           </nav>
         </div>
 
         <div className={styles.bottom}>
           <span className={styles.copy}>
-            &copy; {new Date().getFullYear()} Michael&apos;s Amazing Web Store. All rights reserved.
+            {intl.formatMessage({ id: "footer.copy" }, { year })}
           </span>
           <div className={styles.badges}>
             <span className={styles.badge}>TypeScript</span>
