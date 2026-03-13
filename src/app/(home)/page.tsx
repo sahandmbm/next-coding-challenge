@@ -1,46 +1,75 @@
 'use client';
 import { useState } from 'react';
-import styles from './page.module.css'
+import { useIntl } from 'react-intl';
+import styles from './page.module.css';
+import { useLocalisedCurrency } from '@/hooks/useLocalisedCurrency';
 
-function ItemCount({count, name}: {count: number, name: string}) {
-  return <div key={name}>{name} count: {count}</div>
-};
+const PRODUCTS = [
+  { id: '1', price: 9.99 },
+  { id: '2', price: 14.99 },
+  { id: '3', price: 19.99 },
+  { id: '4', price: 24.99 },
+];
+
+function ItemCount({ count, name }: { count: number; name: string }) {
+  const intl = useIntl();
+  return <div key={name}>{intl.formatMessage({ id: 'item.count' }, { name, count })}</div>;
+}
 
 export default function Home() {
-  const [items, setItems] = useState<{name: string, quantity: number}[]>([]);
+  const intl = useIntl();
+  const { formatCurrency } = useLocalisedCurrency();
+  const [items, setItems] = useState<{ name: string; quantity: number }[]>([]);
   const [itemCount, setItemCount] = useState<number>(0);
 
   const addToCart = (product: string) => {
-    const alreadyInCart = items.find(item => item.name === product);
+    const alreadyInCart = items.find((item) => item.name === product);
     if (alreadyInCart) {
       // @TODO need to find out how to update cart items
     } else {
       setItems([...items, { name: product, quantity: 1 }]);
     }
     setItemCount(itemCount + 1);
-  }
+  };
 
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <p>
-          Michael&apos;s Amazing Web Store
-        </p>
+        <p>{intl.formatMessage({ id: 'store.title' })}</p>
         <div>
-          <button className={styles.basket}>Basket: {itemCount} items</button>
-          <ItemCount name="Item 1" count={items.find(item=> item.name === 'Item 1')?.quantity || 0}/>
-          <ItemCount name="Item 2" count={items.find(item=> item.name === 'Item 2')?.quantity || 0}/>
-          <ItemCount name="Item 3" count={items.find(item=> item.name === 'Item 3')?.quantity || 0}/>
-          <ItemCount name="Item 4" count={items.find(item=> item.name === 'Item 4')?.quantity || 0}/>
+          <button className={styles.basket}>
+            {intl.formatMessage({ id: 'basket.button' }, { count: itemCount })}
+          </button>
+          {PRODUCTS.map((p) => (
+            <ItemCount
+              key={p.id}
+              name={intl.formatMessage({ id: `item.${p.id}.name` })}
+              count={
+                items.find(
+                  (item) => item.name === intl.formatMessage({ id: `item.${p.id}.name` })
+                )?.quantity || 0
+              }
+            />
+          ))}
         </div>
       </div>
 
       <div className={styles.grid}>
-        <button className={styles.card} onClick={() => addToCart('Item 1')} aria-label="Add to basket"><h2>Item 1 <span>-&gt;</span></h2><p>Foo</p></button>
-        <button className={styles.card} onClick={() => addToCart('Item 2')} aria-label="Add to basket"><h2>Item 2 <span>-&gt;</span></h2><p>Bar</p></button>
-        <button className={styles.card} onClick={() => addToCart('Item 3')} aria-label="Add to basket"><h2>Item 3 <span>-&gt;</span></h2><p>Baz</p></button>
-        <button className={styles.card} onClick={() => addToCart('Item 4')} aria-label="Add to basket"><h2>Item 4 <span>-&gt;</span></h2><p>Qux</p></button>
+        {PRODUCTS.map((p) => (
+          <button
+            key={p.id}
+            className={styles.card}
+            onClick={() => addToCart(intl.formatMessage({ id: `item.${p.id}.name` }))}
+            aria-label={intl.formatMessage({ id: 'item.add.label' })}
+          >
+            <h2>
+              {intl.formatMessage({ id: `item.${p.id}.name` })} <span>-&gt;</span>
+            </h2>
+            <p>{intl.formatMessage({ id: `item.${p.id}.description` })}</p>
+            <p>{formatCurrency(p.price)}</p>
+          </button>
+        ))}
       </div>
     </main>
-  )
+  );
 }
