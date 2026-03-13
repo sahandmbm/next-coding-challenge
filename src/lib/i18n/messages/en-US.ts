@@ -5,6 +5,11 @@ const messages: Record<string, string> = {
   "basket.button": "Cart: {count} {count, plural, one {item} other {items}}",
   "item.count": "{name} count: {count}",
   "store.cart": "Cart",
+  "banner.eyebrow": "New collection of the USA!!",
+  "banner.title": "THANKSGIVING SALE - UP TO 50% OFF",
+  "banner.subtitle":
+    "Explore our latest collection of handpicked products, crafted for everyday life.",
+  "banner.cta": "Shop now",
 };
 
 export default messages;

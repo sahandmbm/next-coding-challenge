@@ -38,7 +38,7 @@
 /* Image area */
 .imageArea {
   position: relative;
-  height: calc(100% - 48px);
+  height: 320px;
   background: linear-gradient(135deg, #dbeafe 0%, #c7d2fe 50%, #ede9fe 100%);
   flex-shrink: 0;
   display: flex;

@@ -4,9 +4,18 @@ import { useIntl } from "react-intl";
 import { useLocalisedCurrency } from "@/hooks/useLocalisedCurrency";
 import { ProductCard } from "@/components/product/ProductCard";
 import { ProductGrid } from "@/components/product/ProductGrid";
+import { ImageBanner } from "@/components/ui/ImageBanner";
 import styles from "./page.module.css";
 
 const PRODUCTS = [
+  { id: "1", price: 9.99 },
+  { id: "2", price: 14.99 },
+  { id: "3", price: 19.99 },
+  { id: "4", price: 24.99 },
+  { id: "5", price: 9.99 },
+  { id: "6", price: 14.99 },
+  { id: "7", price: 19.99 },
+  { id: "8", price: 24.99 },
   { id: "1", price: 9.99 },
   { id: "2", price: 14.99 },
   { id: "3", price: 19.99 },
@@ -35,6 +44,7 @@ export default function Home() {
 
   return (
     <div className={styles.main}>
+      <ImageBanner />
       <ProductGrid>
         {PRODUCTS.map((p) => (
           <ProductCard
