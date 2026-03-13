@@ -1,14 +1,20 @@
 "use client";
 import { useState } from "react";
 import { useIntl } from "react-intl";
-import styles from "./page.module.css";
 import { useLocalisedCurrency } from "@/hooks/useLocalisedCurrency";
+import { ProductCard } from "@/components/product/ProductCard";
+import { ProductGrid } from "@/components/product/ProductGrid";
+import styles from "./page.module.css";
 
 const PRODUCTS = [
   { id: "1", price: 9.99 },
   { id: "2", price: 14.99 },
   { id: "3", price: 19.99 },
   { id: "4", price: 24.99 },
+  { id: "5", price: 9.99 },
+  { id: "6", price: 14.99 },
+  { id: "7", price: 19.99 },
+  { id: "8", price: 24.99 },
 ];
 
 export default function Home() {
@@ -29,25 +35,19 @@ export default function Home() {
 
   return (
     <div className={styles.main}>
-      <div className={styles.grid}>
+      <ProductGrid>
         {PRODUCTS.map((p) => (
-          <button
+          <ProductCard
             key={p.id}
-            className={styles.card}
-            onClick={() =>
+            name={intl.formatMessage({ id: `item.${p.id}.name` })}
+            description={intl.formatMessage({ id: `item.${p.id}.description` })}
+            price={formatCurrency(p.price)}
+            onAdd={() =>
               addToCart(intl.formatMessage({ id: `item.${p.id}.name` }))
             }
-            aria-label={intl.formatMessage({ id: "item.add.label" })}
-          >
-            <h2>
-              {intl.formatMessage({ id: `item.${p.id}.name` })}{" "}
-              <span>-&gt;</span>
-            </h2>
-            <p>{intl.formatMessage({ id: `item.${p.id}.description` })}</p>
-            <p>{formatCurrency(p.price)}</p>
-          </button>
+          />
         ))}
-      </div>
+      </ProductGrid>
     </div>
   );
 }
